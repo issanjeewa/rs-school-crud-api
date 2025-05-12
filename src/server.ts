@@ -1,13 +1,9 @@
 import http, { IncomingMessage, ServerResponse } from 'http';
 import { parse } from 'url';
 import { router } from './routes/user.routes';
-import dotenv from 'dotenv';
 
-dotenv.config();
 
-const PORT = Number(process.env.PORT) || 3000;
-
-const server = http.createServer(
+export const server = http.createServer(
   (req: IncomingMessage, res: ServerResponse) => {
     const parsedUrl = parse(req.url || '', true);
     const { pathname } = parsedUrl;
@@ -20,7 +16,3 @@ const server = http.createServer(
     }
   }
 );
-
-server.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
